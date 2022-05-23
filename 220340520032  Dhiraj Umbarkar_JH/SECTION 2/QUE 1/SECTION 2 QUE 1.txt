@@ -1,0 +1,25 @@
+create table tempp(
+string1 varchar(100),
+string2 varchar(100),
+msg varchar(100)
+);
+DROP TABLE tempp;
+Drop procedure PROC1;
+
+delimiter //
+create procedure PROC1(string1 varchar(100),string2 varchar(100))
+
+begin
+declare msg varchar(100);
+declare num int;
+select LOCATE(string1,string2) into num;
+
+if num>0 then
+	insert into tempp values(string1,string2,'String1 exists in String2');
+    else 
+    insert into tempp values(string1,string2,'String1 does not exists in String2');
+    end if;
+    select * from tempp;
+    Call PROC1;
+    end; //
+    delimiter ;
